@@ -23,7 +23,7 @@ class Log(models.Model):
      event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
      round = models.IntegerField()
      judge = models.ForeignKey(Judge, on_delete=models.DO_NOTHING)
-     player = models.IntegerField()
+     player = models.ForeignKey(Player, on_delete=models.DO_NOTHING)
      violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING)
      penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING)
      text = models.TextField()
