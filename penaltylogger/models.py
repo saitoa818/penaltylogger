@@ -10,20 +10,24 @@ class Judge(models.Model):
      name = models.CharField(max_length=10)
 
 class Player(models.Model):
-     player_no = models.IntegerField()
      player_name = models.CharField(max_length=10)
 
 class Violation(models.Model):
      content = models.CharField(max_length=30)
+     def __str__(self):
+        return self.content
 
 class Penalty(models.Model):
      content = models.CharField(max_length=10)
+     def __str__(self):
+        return self.content
 
 class Log(models.Model):
      event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
      round = models.IntegerField()
      judge = models.ForeignKey(Judge, on_delete=models.DO_NOTHING)
-     player = models.ForeignKey(Player, on_delete=models.DO_NOTHING)
+     #ForeignKeyでなくしたが問題ないか
+     player = models.IntegerField()
      violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING)
      penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING)
      text = models.TextField()

@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Log
-from django.shortcuts import render, get_object_or_404
 from .forms import LogForm
+from . import forms
+
 
 def post_list(request):
     return render(request, 'penaltylogger/post_list.html', {})
@@ -19,21 +21,21 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-        return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', pk=post.pk)
     else:
         form = LogForm()
-    return render(request, 'penaltylogger/post_edit.html', {'form': form})
+    return render(request, 'penaltylogger/post_log.html', {'form': form})
 
-def post_edit(request, pk):
+def post_log(request, pk):
     post = get_object_or_404(Log, pk=pk)
     if request.method == "POST":
-        form = LogForm(request.Log, instance=post)
+        form = LogForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-        return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', pk=post.pk)
     else:
         form = LogForm(instance=post)
-    return render(request, 'penaltylogger/post_edit.html', {'form': form})
+    return render(request, 'penaltylogger/post_log.html', {'form': form})
