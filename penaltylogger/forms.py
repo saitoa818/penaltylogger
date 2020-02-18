@@ -6,7 +6,7 @@ from .models import Log
 
 class LogForm(forms.ModelForm):
     #以下を追加
-    player_no = forms.IntegerField()
+    player_no = forms.IntegerField(label='プレイヤーNo.')
     #labels = {'player_no': 'プレイヤーNo.',}
     class Meta:
         model = Log

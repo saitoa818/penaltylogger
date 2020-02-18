@@ -2,7 +2,7 @@ from django.db import models
 
 #以下model。イベント、ラウンド、ジャッジ、選手、違反の内容、ペナルティの内容、備考。
 class Event(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField()
 
 class Judge(models.Model):
@@ -24,11 +24,11 @@ class Penalty(models.Model):
         return self.content
 
 class Log(models.Model):
-     event = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
-     round = models.IntegerField()
-     judge = models.ForeignKey(Judge, on_delete=models.DO_NOTHING)
-     player = models.ForeignKey(Player, on_delete=models.DO_NOTHING)
-     violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING)
-     penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING)
-     text = models.TextField()
+     event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, blank=True, null=True)
+     round = models.IntegerField(blank=True, null=True)
+     judge = models.ForeignKey(Judge, on_delete=models.DO_NOTHING, blank=True, null=True)
+     player = models.ForeignKey(Player, on_delete=models.DO_NOTHING, blank=True, null=True)
+     violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING, blank=True, null=True)
+     penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING, blank=True, null=True)
+     text = models.TextField(blank=True, null=True)
      
