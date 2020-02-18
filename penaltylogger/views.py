@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Log
+from .models import Player
 from .forms import LogForm
 from . import forms
 
@@ -31,10 +32,10 @@ def post_log(request, pk):
     if request.method == "POST":
         form = LogForm(request.POST, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
+            log = form.save(commit=False)
+            player = Player.objects.filter(player_no=form.player_no).first()
+            log.player = player
+            log.save()
             return redirect('post_detail', pk=post.pk)
     else:
         form = LogForm(instance=post)
