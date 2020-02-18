@@ -1,0 +1,14 @@
+{% extends 'penaltylogger/base.html' %}
+
+{% block content %}
+    <div class="log">
+        {% if log.published_date %}
+            <div class="date">
+                {{ log.published_date }}
+            </div>
+        {% endif %}
+        <a class="btn btn-default" href="{% url 'log_edit' pk=log.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <h2>{{ log.title }}</h2>
+        <p>{{ log.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'penaltylogger/base.html' %}
+
+{% block content %}
+    {% for log in logs %}
+        <div class="log">
+            <div class="date">
+                {{ log.published_date }}
+            </div>
+            <h2><a href="{% url 'log_detail' pk=log.pk %}">{{ log.title }}</a></h2>
+            <p>{{ log.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
