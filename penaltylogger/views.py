@@ -36,7 +36,7 @@ def log_edit(request, pk):
             player = Player.objects.filter(player_no=form.player_no).first()
             log.player = player
             log.save()
-            return redirect('post_detail', pk=log.pk)
+            return redirect('log_detail', pk=log.pk)
     else:
         form = LogForm(instance=log)
     return render(request, 'penaltylogger/log_edit.html', {'form': form})
