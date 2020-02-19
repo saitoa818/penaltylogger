@@ -3,7 +3,6 @@ from django import forms
 from .models import Player
 from .models import Log
 
-
 class LogForm(forms.ModelForm):
     #以下を追加
     player_no = forms.IntegerField(label='プレイヤーNo.')

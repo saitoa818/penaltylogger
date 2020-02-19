@@ -3,10 +3,10 @@ from django.db import models
 #以下model。イベント、ラウンド、ジャッジ、選手、違反の内容、ペナルティの内容、備考。
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
-    max_round = models.IntegerField()
+    max_round = models.IntegerField(null=True, blank=True)
 
 class Judge(models.Model):
-     judge_id = models.IntegerField()
+     judge_id = models.IntegerField(null=True, blank=True)
      name = models.CharField(max_length=10)
 
 class Player(models.Model):
