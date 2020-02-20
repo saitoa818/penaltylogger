@@ -4,9 +4,6 @@ from .models import Player
 from .models import Log
 
 class LogForm(forms.ModelForm):
-    #以下を追加
-    class player_no:
-        player_no = forms.IntegerField(label='プレイヤーNo.')
     #labels = {'player_no': 'プレイヤーNo.',}
     class Meta:
         model = Log
@@ -18,6 +15,9 @@ class LogForm(forms.ModelForm):
             'penalty': 'ペナルティの内容',
             'text': '備考欄',
         }
+    player_no = forms.IntegerField(label='プレイヤーNo.')
+    AUTH_USER_MODEL = 'penaltylogger.player_no'
+    
         
 
 #class PlayerForm(forms.Form):
