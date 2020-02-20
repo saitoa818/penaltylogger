@@ -33,7 +33,7 @@ def log_edit(request, pk):
         form = LogForm(request.POST, instance=log)
         if form.is_valid():
             log = form.save(commit=False)
-            player = Player.objects.filter(player_no=form.player_no).first()
+            player = Player.objects.filter(player_no=form.data['player_no']).first()
             log.player = player
             log.save()
             return redirect('log_detail', pk=log.pk)
