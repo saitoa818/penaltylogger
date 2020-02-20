@@ -17,6 +17,7 @@ class LogForm(forms.ModelForm):
         }
     player_no = forms.IntegerField(label='プレイヤーNo.')
     AUTH_USER_MODEL = 'penaltylogger.player_no'
+
     
         
 
