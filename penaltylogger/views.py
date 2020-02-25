@@ -27,6 +27,18 @@ def log_new(request):
         form = LogForm()
     return render(request, 'penaltylogger/log_edit.html', {'form': form})
 
+# 投稿確認画面（プレビュー）を表示
+def confirm(request):
+    if request.method == "POST":
+        form = LogForm(request.POST)
+        if form.is_valid():
+            context = {'form': form }
+            return render(
+                request,
+                "penaltylogger/log_preview.html",
+                context=context
+            )
+
 def log_edit(request, pk):
     log = get_object_or_404(Log, pk=pk)
     if request.method == "POST":
