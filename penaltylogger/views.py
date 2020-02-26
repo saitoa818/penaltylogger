@@ -25,10 +25,10 @@ def log_new(request):
             return redirect('log_detail', pk=log.pk)
     else:
         form = LogForm()
-    return render(request, 'penaltylogger/log_edit.html', {'form': form})
+    return render(request, 'penaltylogger/log_preview.html', {'form': form})
 
 # 投稿確認画面（プレビュー）を表示
-def confirm(request):
+def log_preview(request):
     if request.method == "POST":
         form = LogForm(request.POST)
         if form.is_valid():
