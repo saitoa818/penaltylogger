@@ -25,7 +25,7 @@ def log_new(request):
             return redirect('log_detail', pk=log.pk)
     else:
         form = LogForm()
-    return render(request, 'penaltylogger/log_preview.html', {'form': form})
+    return render(request, 'penaltylogger/log_edit.html', {'form': form})
 
 # 投稿確認画面（プレビュー）を表示
 def log_preview(request):
@@ -35,7 +35,7 @@ def log_preview(request):
             context = {'form': form }
             return render(
                 request,
-                "penaltylogger/log_preview.html",
+                "penaltylogger/log_edit.html",
                 context=context
             )
 
@@ -51,4 +51,4 @@ def log_edit(request, pk):
             return redirect('log_detail', pk=log.pk)
     else:
         form = LogForm(instance=log)
-    return render(request, 'penaltylogger/log_edit.html', {'form': form})
+    return render(request, 'penaltylogger/log_preview.html', {'form': form})
