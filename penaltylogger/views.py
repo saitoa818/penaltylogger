@@ -27,29 +27,36 @@ def log_detail(request, pk):
     # else:
     #     form = LogForm()
     # return render(request, 'penaltylogger/log_edit.html', {'form': form})
+
 def log_new(request):
     if request.method == "GET":
         form = LogForm(request.GET)
+
         if form.is_valid():
             log = form.save(commit=False)
             player = Player.objects.filter(player_no=form.data['player_no']).first()
             log.player = player
             log.save()
             return redirect('log_confirm')
+            
+        if request.method == "POST":
+            form = LogForm(request.POST)
+            if form.is_valid():
+                context = {'form': form }
+                return render(request, "penaltylogger/log_save.html", context=context )
     else:
         form = LogForm()
     return render(request, 'penaltylogger/log_new.html', {'form': form})
 
-# 投稿確認画面（プレビュー）を表示
-def log_confirm(request):
-    if request.method == "POST":
-        form = LogForm(request.POST)
-        if form.is_valid():
-            context = {'form': form }
-            return render(request, "penaltylogger/log_save.html", context=context )
-    else:
-        form = LogForm()
-    return render(request, 'penaltylogger/log_confirm.html', {'form': form})
+# def log_confirm(request): #投稿確認画面（プレビュー）を表示
+#     if request.method == "POST":
+#         form = LogForm(request.POST)
+#         if form.is_valid():
+#             context = {'form': form }
+#             return render(request, "penaltylogger/log_save.html", context=context )
+#     else:
+#         form = LogForm()
+#     return render(request, 'penaltylogger/log_confirm.html', {'form': form})
 
 
     
