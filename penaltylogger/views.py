@@ -30,16 +30,13 @@ def log_detail(request, pk):
 
 def log_new(request):
     
-    
     if request.method == "GET":
         form = LogForm(request.GET)
-
-        if form.is_valid():
-            log = form.save(commit=False)
-            player = Player.objects.filter(player_no=form.data['player_no']).first()
-            log.player = player
-            log.save()
-            return render(request, "penaltylogger/log_confirm.html")
+        log = form.save(commit=False)
+        player = Player.objects.filter(player_no=form.data['player_no']).first()
+        log.player = player
+        log.save()
+        return render(request, "penaltylogger/log_confirm.html" {'form': form})
 
     if request.method == "POST":
         form = LogForm(request.POST)
