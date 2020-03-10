@@ -1,0 +1,13 @@
+下記の内容で保存してよろしいですか？
+
+{% for field in form %}
+    {{ field.name }}:{{ field.value }}<br>
+{% endfor %}
+
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {% for field in form %}
+       {{ field.as_hidden }}
+    {% endfor %}
+    <input type="submit" value="記録する">
+</form>
