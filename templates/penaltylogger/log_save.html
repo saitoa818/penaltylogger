@@ -1,2 +1,7 @@
+{% extends 'penaltylogger/base.html' %}
+{% block content %}
 保存しました。
-#仮置き
+<form action="/log/new/" method="GET">
+    <button type="submit" class="btn btn-primary btn-lg">戻る</button>
+</form>
+{% endblock %}
