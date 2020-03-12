@@ -29,30 +29,26 @@ def log_detail(request, pk):
 
 def log_new(request):
     
-    if request.method == "GET":
+    if request.method == "GET": #入力を行う
         form = LogForm(request.GET)
-        log = form.save(commit=False)
-        player = Player.objects.filter(player_no=form.data['player_no']).first()
-        log.player = player
-        return render(request, "penaltylogger/log_confirm.html")
+        return render(request, "penaltylogger/log_new.html", {'form': form})
 
-    if request.method == "POST":
+    if request.method == "POST": #入力されたものを確認する
         form = LogForm(request.POST)
         if form.is_valid():
-            context = {'form': form }
-            return render(request, "penaltylogger/log_save.html", context=context )
+            return render(request, "penaltylogger/log_confirm.html", {'form': form })
     else:
         form = LogForm()
     return render(request, 'penaltylogger/log_new.html', {'form': form})   
 
-def log_save(request):
-    log = get_object_or_404(Log, pk=pk)
+def log_save(request): 
     if request.method == "POST":
         form = LogForm(request.POST)
+        log = form.save(commit=False)
         log.save()
     else:
         form = LogForm()
-    return render(request, 'penaltylogger/log_new.html', {})
+    return render(request, 'penaltylogger/log_save.html', {})
 
 # def log_edit(request, pk):
  #     log = get_object_or_404(Log, pk=pk)

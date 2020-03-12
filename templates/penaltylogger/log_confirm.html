@@ -4,7 +4,7 @@
     {{ field.name }}:{{ field.value }}<br>
 {% endfor %}
 
-<form method="POST" class="post-form">
+<form action="save/" method="POST" class="post-form">
     {% csrf_token %}
     {% for field in form %}
        {{ field.as_hidden }}
