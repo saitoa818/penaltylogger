@@ -21,13 +21,15 @@
     </div>
     {% endfor %}
 
-    <form action="/log/save/" method="POST">
+    <form action={% url "log_save" %} method="POST">
         <button type="submit" class="btn btn-primary btn-lg">記録する</button>
         {% for field in form %}{{ field.as_hidden }}{% endfor %}
         {% csrf_token %}
     </form>
+
     <hr>
-    <form action="" method="GET">
+    
+    <form action={% url "log_new" %} method="GET">
         <button type="submit" class="btn btn-primary btn-lg">戻る</button>
         {% for field in form %}{{ field.as_hidden }}{% endfor %}
         {% csrf_token %}
