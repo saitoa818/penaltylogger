@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 #以下model。イベント、ラウンド、ジャッジ、選手、違反の内容、ペナルティの内容、備考。
-class User(AbstractBaseUser, PermissionsMixin):
+class CustomUser(AbstractUser):
     password = models.CharField(max_length=20, null=True, blank=True)
 
 class Event(models.Model):
@@ -11,7 +11,7 @@ class Event(models.Model):
 
 class Judge(models.Model):
      judge_id = models.IntegerField(null=True, blank=True)
-     user = models.OneToOneField(settings.AUTH_USER_MODEL) #OneToOneで紐付ける
+     user = models.OneToOneField(CustomUser, related_password) #OneToOneで紐付ける
 
 class Player(models.Model):
      player_no = models.IntegerField()
