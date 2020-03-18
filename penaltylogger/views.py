@@ -4,8 +4,11 @@ from django.utils import timezone
 from .forms import LogForm
 from .models import Log
 from .models import Player
+from django.contrib.auth.models import User
 from . import forms
 
+def login(request):
+    return render(request, 'penaltylogger/login.html', {})
 
 def log_list(request):
     return render(request, 'penaltylogger/log_list.html', {})
@@ -49,6 +52,7 @@ def log_save(request):
     else:
         form = LogForm()
     return render(request, 'penaltylogger/log_save.html', {})
+    
 
 # def log_edit(request, pk):
  #     log = get_object_or_404(Log, pk=pk)

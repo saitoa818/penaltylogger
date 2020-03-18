@@ -1,17 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 #以下model。イベント、ラウンド、ジャッジ、選手、違反の内容、ペナルティの内容、備考。
-class CustomUser(AbstractUser):
-    password = models.CharField(max_length=20, null=True, blank=True)
+# class User
+# メール
+# password
+# djangoのユーザーで調べる
 
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField(null=True, blank=True)
 
 class Judge(models.Model):
+     user = models.OneToOneField(User, on_delete=models.CASCADE)
      judge_id = models.IntegerField(null=True, blank=True)
-     user = models.OneToOneField(CustomUser, related_password) #OneToOneで紐付ける
+     name = models.CharField(max_length=10)
 
 class Player(models.Model):
      player_no = models.IntegerField()

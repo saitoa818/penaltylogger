@@ -1,5 +1,4 @@
 from django.urls import path
-
 from . import views
 
 urlpatterns = [
@@ -8,5 +7,6 @@ urlpatterns = [
     path('log/new/', views.log_new, name='log_new'),
     #path('log/<int:pk>/edit/', views.log_edit, name='log_edit'),
     #path('log/confirm/', views.log_confirm, name='log_confirm'),
-    path('log/save/', views.log_save, name='log_save')
+    path('log/save/', views.log_save, name='log_save'),
+    path('login/', views.login, name='login'),
 ]
