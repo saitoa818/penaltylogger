@@ -1,12 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-#以下model。イベント、ラウンド、ジャッジ、選手、違反の内容、ペナルティの内容、備考。
-# class User
-# メール
-# password
-# djangoのユーザーで調べる
-
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField(null=True, blank=True)
