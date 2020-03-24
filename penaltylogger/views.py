@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import LogForm
 from .models import Log
-from .models import Player
+from .models import Judge
 from django.contrib.auth.decorators import login_required
 from . import forms
 
@@ -35,6 +35,9 @@ def log_new(request):
 @login_required
 def log_save(request): 
     if request.method == "POST":
+        judge = request.user
+        judge_id = Judge.judge_id
+        
         form = LogForm(request.POST)
         log = form.save(commit=False)
         log.save()
