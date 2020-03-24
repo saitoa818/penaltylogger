@@ -8,14 +8,14 @@
         <link rel="stylesheet" href="{% static 'css/penaltylogger.css' %}">
     </head>
     <body>
+            <h1><a href="/">ペナルティロガー</a></h1>
+            <p class="top-menu"><small>(<a href="{% url 'logout' %}">ログアウトする</a>)</small></p>
             <div class="page-header">
                 {% if user.is_authenticated %}
-                <a href="{% url 'log_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-                <p class="top-menu">あなたのID:{{ user.username }} <small>(<a href="{% url 'logout' %}">ログアウトする</a>)</small></p>
+                <a href="{% url 'log_new' %}" class="top-menu">新規ペナルティ記録<span class="glyphicon glyphicon-plus"></span></a>
             {% else %}
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
-            <h1><a href="/">ペナルティロガー</a></h1>
         </div>
         <div class="content container">
             <div class="row">
