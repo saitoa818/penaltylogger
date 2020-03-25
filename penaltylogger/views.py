@@ -36,11 +36,10 @@ def log_new(request):
 def log_save(request): 
     if request.method == "POST":
         user = request.user
-        user.save()
-        judge = Judge(user=user)
-        judge.save()
+        judge = user.judge
+        judge_id = judge.judge_id
+        #これでjudge_idを取得できると考えているが、現在judge_idが設定されていない状態？のためか変化がないです。
 
-        
         form = LogForm(request.POST)
         log = form.save(commit=False)
         log.save()
