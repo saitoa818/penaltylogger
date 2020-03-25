@@ -35,8 +35,11 @@ def log_new(request):
 @login_required
 def log_save(request): 
     if request.method == "POST":
-        judge = request.user
-        judge_id = Judge.judge_id
+        user = request.user
+        user.save()
+        judge = Judge(user=user)
+        judge.save()
+
         
         form = LogForm(request.POST)
         log = form.save(commit=False)
