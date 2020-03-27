@@ -35,13 +35,11 @@ def log_new(request):
 @login_required
 def log_save(request): 
     if request.method == "POST":
-        user = request.user
-        judge = user.judge
-        judge_id = judge.judge_id
-        #これでjudge_idを取得できると考えているが、現在judge_idが設定されていない状態？のためか変化がないです。
-
         form = LogForm(request.POST)
         log = form.save(commit=False)
+        user = request.user
+        judge = user.judge
+        log.judge = judge
         log.save()
     else:
         form = LogForm()

@@ -9,6 +9,8 @@ class Judge(models.Model):
      user = models.OneToOneField(User, on_delete=models.CASCADE)
      judge_id = models.IntegerField(null=True, blank=True)
      name = models.CharField(max_length=10)
+     def __str__(self):
+        return str(self.judge_id)
 
 class Player(models.Model):
      player_no = models.IntegerField()
