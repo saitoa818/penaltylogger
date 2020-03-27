@@ -1,16 +1,23 @@
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+class Judge(AbstractUser):
+     judge_id = models.IntegerField(null=True)
+     def __str__(self):
+        return str(self.judge_id)
+
 
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField(null=True, blank=True)
 
-class Judge(models.Model):
-     user = models.OneToOneField(User, on_delete=models.CASCADE)
-     judge_id = models.IntegerField(null=True, blank=True)
-     name = models.CharField(max_length=10)
-     def __str__(self):
-        return str(self.judge_id)
+# class Judge(models.Model):
+#      user = models.OneToOneField(User, on_delete=models.CASCADE)
+#      judge_id = models.IntegerField(null=True, blank=True)
+#      name = models.CharField(max_length=10)
+#      def __str__(self):
+#         return str(self.judge_id)
 
 class Player(models.Model):
      player_no = models.IntegerField()

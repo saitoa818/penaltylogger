@@ -37,8 +37,7 @@ def log_save(request):
     if request.method == "POST":
         form = LogForm(request.POST)
         log = form.save(commit=False)
-        user = request.user
-        judge = user.judge
+        judge = request.user
         log.judge = judge
         log.save()
     else:
