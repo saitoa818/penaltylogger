@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import LogForm
 from .models import Log
+from .models import Event
 from .models import Judge
 from django.contrib.auth.decorators import login_required
 from . import forms
@@ -38,6 +39,10 @@ def log_save(request):
         form = LogForm(request.POST)
         log = form.save(commit=False)
         judge = request.user
+
+        event = Event.objects.filter(name='テストイベント1').first()
+        log.event = event
+
         log.judge = judge
         log.save()
     else:
