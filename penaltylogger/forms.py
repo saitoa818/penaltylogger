@@ -4,7 +4,6 @@ from .models import Player
 from .models import Log
 
 class LogForm(forms.ModelForm):
-    #labels = {'player_no': 'プレイヤーNo.',}
     class Meta:
         model = Log
         fields = ('round', 'player_no', 'violation', 'penalty', 'text')

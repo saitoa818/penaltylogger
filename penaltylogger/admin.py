@@ -14,6 +14,5 @@ class JudgeAdmin(UserAdmin):
 admin.site.register(Judge, JudgeAdmin)
 admin.site.register(Event)
 admin.site.register(Log)
-#admin.site.register(Judge)
 admin.site.register(Penalty)
 admin.site.register(Violation)

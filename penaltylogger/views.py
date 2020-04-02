@@ -6,13 +6,15 @@ from .models import Event
 from .models import Judge
 from django.contrib.auth.decorators import login_required
 from . import forms
+from django.views.generic import ListView
 
 def login(request):
     return render(request, 'registration/login.html', {})
 
-@login_required
-def log_list(request):
-    return render(request, 'penaltylogger/log_list.html', {})
+#@login_required
+class LogList(ListView):
+    model = Log
+    fields = ['all']
 
 @login_required
 def log_detail(request, pk):
@@ -39,10 +41,9 @@ def log_save(request):
         form = LogForm(request.POST)
         log = form.save(commit=False)
         judge = request.user
-
         event = Event.objects.filter(name='テストイベント1').first()
+        #name=の部分はイベントごとに修正が必要。
         log.event = event
-
         log.judge = judge
         log.save()
     else:

@@ -1,13 +1,16 @@
 {% extends 'penaltylogger/base.html' %}
 
 {% block content %}
-    {% for log in logs %}
-        <div class="log">
-            <div class="date">
-                {{ log.published_date }}
-            </div>
-            <h2><a href="{% url 'log_detail' pk=log.pk %}">{{ log.title }}</a></h2>
-            <p>{{ log.text|linebreaksbr }}</p>
-        </div>
-    {% endfor %}
+
+<h1>ペナルティログ一覧</h1>
+    <ol>
+        {% for log in log_list %}
+        <!-- modelはlogのため、modelのリストはlog_list(model名_list) -->
+ 
+        <h2><li><a href="{{ log.id }}">{{ log.name }}</a></li></h2>
+        <!-- aタブにschoolのidをhrefで指定することで、DetailViewに遷移できます -->
+        {% endfor %}
+    </ol>
+ 
 {% endblock %}
+
