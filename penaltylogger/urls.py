@@ -4,7 +4,7 @@ from .views import LogList
 
 
 urlpatterns = [
-    path('', LogList.as_view(), name='log_list'),
+    path('', views.LogList.as_view(), name='log_list'),
     path('log/<int:pk>/', views.log_detail, name='log_detail'),
     path('log/new/', views.log_new, name='log_new'),
     #path('log/<int:pk>/edit/', views.log_edit, name='log_edit'),

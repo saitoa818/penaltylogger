@@ -22,7 +22,7 @@ def log_detail(request, pk):
     log = get_object_or_404(Log, pk=pk)
     return render(request, 'penaltylogger/log_detail.html', {'log': log})
 
-@login_required('polls.add_choice')
+#@login_required('polls.add_choice')
 def log_new(request):
     if request.method == "GET": #入力を行う
         form = LogForm(request.GET)

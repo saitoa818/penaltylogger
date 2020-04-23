@@ -1,17 +1,30 @@
 {% extends 'penaltylogger/base.html' %}
 
 {% block content %}
-
-<h1>ペナルティログ一覧</h1>
-    <ol>
-        {% for log in log_list %}
-        <!-- modelはlogのため、modelのリストはlog_list(model名_list) -->
+<!DOCTYPE html>
+<html>
  
-        <h2><li><a href="{{ log.id }}">{{ log.name }}</a></li></h2>
-        <!-- aタブにlogのidをhrefで指定することで、DetailViewに遷移できます -->
+<head>
+    <meta charset="utf-8" />
+    <title>ListViewサンプル</title>
+</head>
+ 
+<body>
+    <table border="1">
+        <tr>
+            <th>大会名</th>
+            <th>ラウンド</th>
+        </tr>
+        {% for log_list in object_list %}
+        <tr>
+            <td>{{ log_list.event }}</td>
+            <td>{{ log_list.round }}</td>
+        </tr>
         {% endfor %}
-    </ol>
+    </table>
+</body>
+ 
+</html>
  
 {% endblock %}
 
- 
