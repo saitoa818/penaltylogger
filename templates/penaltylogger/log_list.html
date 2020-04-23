@@ -14,11 +14,21 @@
         <tr>
             <th>大会名</th>
             <th>ラウンド</th>
+            <th>担当ジャッジ</th>
+            <th>プレイヤー名</th>
+            <th>違反の内容</th>
+            <th>ペナルティ</th>
+            <th>備考</th>
         </tr>
         {% for log_list in object_list %}
         <tr>
             <td>{{ log_list.event }}</td>
             <td>{{ log_list.round }}</td>
+            <td>{{ log_list.judge }}</td>
+            <td>{{ log_list.player }}</td>
+            <td>{{ log_list.violation }}</td>
+            <td>{{ log_list.penalty}}</td>
+            <td>{{ log_list.text }}</td>
         </tr>
         {% endfor %}
     </table>
