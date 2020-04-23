@@ -22,4 +22,3 @@ class LogForm(forms.ModelForm):
 
 #class PlayerForm(forms.Form):
 #player_no = forms.IntegerField()
-    

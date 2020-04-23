@@ -1,11 +1,69 @@
 from django.db import models
-#from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
 
-class Judge(AbstractUser):
-     judge_id = models.IntegerField(null=True)
-     def __str__(self):
+class Manager(BaseUserManager):
+    judge_id = models.IntegerField(null=True, unique=True)
+    def create_user(self, judge_id, password=None,):
+        if not judge_id:
+            raise ValueError
+
+        user = self.model(password=password, judge_id=judge_id)
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, judge_id, password=None,):
+        user = self.create_user(
+            password=password,
+            judge_id=judge_id,
+        )
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+
+class Judge(AbstractBaseUser):
+    judge_id = models.IntegerField(
+        verbose_name='Judge_ID',
+        blank=True,
+        null=True,
+        default=0,
+        unique=True,
+    )
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=True)
+
+    objects = Manager()
+
+    USERNAME_FIELD = 'judge_id'
+
+    def __str__(self):
         return str(self.judge_id)
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+######
+
+# class Judge(AbstractUser):
+#      judge_id = models.IntegerField(null=True)
+#      def __str__(self):
+#         return str(self.judge_id)
 
 
 class Event(models.Model):
@@ -41,4 +99,3 @@ class Log(models.Model):
      violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING, blank=True, null=True)
      penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING, blank=True, null=True)
      text = models.TextField(blank=True, null=True)
-     

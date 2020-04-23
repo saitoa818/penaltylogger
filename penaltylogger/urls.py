@@ -11,5 +11,8 @@ urlpatterns = [
     #path('log/confirm/', views.log_confirm, name='log_confirm'),
     path('log/save/', views.log_save, name='log_save'),
     path('login/', views.login, name='login'),
+    # path('^$', views.LogList.as_view(), name='index'),
+    # path('^add/$', views.MesAddView.as_view(), name='add'),
+    # path('^change/(?P<pk>[0-9]+)/$', views.MesChangeView.as_view(), name='change'),
+    # path('', views.MesDeleteView.as_view(), name='delete'),
 ]
-

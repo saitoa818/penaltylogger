@@ -8,10 +8,11 @@ from django.contrib.auth.decorators import login_required
 from . import forms
 from django.views.generic import ListView
 
+
 def login(request):
     return render(request, 'registration/login.html', {})
 
-#@login_required
+#@login_required('polls.add_choice')
 class LogList(ListView):
     model = Log
     fields = ['all']
@@ -21,7 +22,7 @@ def log_detail(request, pk):
     log = get_object_or_404(Log, pk=pk)
     return render(request, 'penaltylogger/log_detail.html', {'log': log})
 
-@login_required
+@login_required('polls.add_choice')
 def log_new(request):
     if request.method == "GET": #入力を行う
         form = LogForm(request.GET)
