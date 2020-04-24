@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
 class Manager(BaseUserManager):
@@ -25,7 +25,7 @@ class Manager(BaseUserManager):
         return user
 
 
-class Judge(AbstractBaseUser):
+class Judge(AbstractBaseUser, PermissionsMixin):
     judge_id = models.IntegerField(
         verbose_name='Judge_ID',
         blank=True,
@@ -39,7 +39,6 @@ class Judge(AbstractBaseUser):
     objects = Manager()
 
     USERNAME_FIELD = 'judge_id'
-
     def __str__(self):
         return str(self.judge_id)
 
