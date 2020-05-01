@@ -123,5 +123,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # ログイン後トップページにリダイレクト
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'penaltylogger.Judge'

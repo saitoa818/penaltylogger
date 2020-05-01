@@ -33,8 +33,14 @@ class Judge(AbstractBaseUser, PermissionsMixin):
         default=0,
         unique=True,
     )
+    is_staff = models.BooleanField(
+        ('staff status'),
+        default=False,
+        help_text=('Designates whether the user can log into this admin site.'),
+    )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=True)
+    log_view =  models.BooleanField(default=True)
 
     objects = Manager()
 
@@ -59,22 +65,11 @@ class Judge(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 ######
 
-# class Judge(AbstractUser):
-#      judge_id = models.IntegerField(null=True)
-#      def __str__(self):
-#         return str(self.judge_id)
-
 
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField(null=True, blank=True)
 
-# class Judge(models.Model):
-#      user = models.OneToOneField(User, on_delete=models.CASCADE)
-#      judge_id = models.IntegerField(null=True, blank=True)
-#      name = models.CharField(max_length=10)
-#      def __str__(self):
-#         return str(self.judge_id)
 
 class Player(models.Model):
      player_no = models.IntegerField()

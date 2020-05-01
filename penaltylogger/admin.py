@@ -1,17 +1,19 @@
 from django.contrib import admin
-#from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin
 from .models import Event
 from .models import Log
 from .models import Penalty
 from .models import Violation
+from .models import Judge
+from django.contrib.auth.models import Group, User
+
+from django.contrib.auth.forms import UserChangeForm
 ###
 
 from django import forms
-from django.contrib.auth.models import Group
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+#from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from penaltylogger.models import Judge
 
 
 class UserCreationForm(forms.ModelForm):
@@ -25,14 +27,6 @@ class UserCreationForm(forms.ModelForm):
         model = Judge
         fields = ('judge_id', 'password')
 
-    # def clean_password2(self):
-    #     # Check that the two password entries match
-    #     password1 = self.cleaned_data.get("password1")
-    #     password2 = self.cleaned_data.get("password2")
-    #     if password1 and password2 and password1 != password2:
-    #         raise forms.ValidationError("Passwords don't match")
-    #     return password2
-
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super().save(commit=False)
@@ -42,45 +36,28 @@ class UserCreationForm(forms.ModelForm):
         return user
 
 
-class UserChangeForm(forms.ModelForm):
-    """A form for updating users. Includes all the fields on
-    the user, but replaces the password field with admin's
-    password hash display field.
-    """
-    password = ReadOnlyPasswordHashField()
+class UserChangeForm(UserChangeForm):
 
-    class Meta:
+    class Meta(UserChangeForm.Meta):
         model = Judge
-        fields = ('password', 'is_active', 'is_admin', 'judge_id')
-
-    def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
-        return self.initial["password"]
+        fields = '__all__'
 
 
-class UserAdmin(BaseUserAdmin):
-    # The forms to add and change user instances
+class UserAdmin(UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    # The fields to be used in displaying the User model.
-    # These override the definitions on the base UserAdmin
-    # that reference specific fields on auth.User.
-    list_display = ('is_admin',)
-    list_filter = ('is_admin',)
+    list_display = ('judge_id', 'is_staff', 'log_view')
+    list_filter = ('judge_id', 'groups')
     fieldsets = (
         (None, {'fields': ('judge_id', 'password')}),
-        #('Personal info', {'fields': ('date_of_birth',)}),
-        ('Permissions', {'fields': ('is_admin',)}),
+        ('Permissions', {'fields': ('is_admin', 'log_view', )}),
     )
-    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
-    # overrides get_fieldsets to use this attribute when creating a user.
+
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ( 'judge_id', 'password1', #'password2'
+            'fields': ( 'judge_id', 'password'
             ),
         }),
     )
@@ -88,21 +65,15 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('judge_id',)
     filter_horizontal = ()
 
-
-# Now register the new UserAdmin...
-admin.site.register(Judge, UserAdmin)
-# ... and, since we're not using Django's built-in permissions,
-# unregister the Group model from admin.
-admin.site.unregister(Group)
-
-
 ###
+
 class JudgeAdmin(UserAdmin):
     model = Judge
     fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('judge_id',)}),)
-    list_display = ['username', 'password', 'judge_id']
+    list_display = ['password', 'judge_id', 'is_staff']
 
-#admin.site.register(Judge, JudgeAdmin)
+admin.site.register(Judge, UserAdmin)
+admin.site.unregister(Group)
 admin.site.register(Event)
 admin.site.register(Log)
 admin.site.register(Penalty)
