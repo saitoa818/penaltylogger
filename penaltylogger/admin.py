@@ -1,10 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Event
-from .models import Log
-from .models import Penalty
-from .models import Violation
-from .models import Judge
+from .models import Event, Log, Penalty, Violation, Judge
 from django.contrib.auth.models import Group, User
 
 from django.contrib.auth.forms import UserChangeForm

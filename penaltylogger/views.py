@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . import forms
 from .forms import LogForm
 from .forms import LoginForm
-from .models import Log, Event, Judge
+from .models import Log, Event, Judge, Penalty
 from django.views import generic
 from django.views.generic import ListView
 from django.contrib.auth.views import LoginView, LogoutView

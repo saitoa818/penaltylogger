@@ -19,6 +19,7 @@ class LogForm(forms.ModelForm):
     class Meta:
         model = Log
         fields = ('round', 'player_no', 'violation', 'penalty', 'text')
+
         labels = {
             'round': 'ラウンド数',
             'player_no': 'プレイヤーNo.',
@@ -27,9 +28,18 @@ class LogForm(forms.ModelForm):
             'text': '備考欄',
         }
     player_no = forms.IntegerField(label='プレイヤーNo.')
-    AUTH_USER_MODEL = 'penaltylogger.player_no'
 
-    
+    ペナルティ程度 = forms.fields.ChoiceField(
+        choices = (
+            ('低', '低'),
+            ('中', '中'),
+            ('高', '高'),
+            ('イカサマ', 'イカサマ'),
+        ),
+        required=True,
+        widget=forms.widgets.Select
+    )
+    AUTH_USER_MODEL = 'penaltylogger.player_no'
         
 
 #class PlayerForm(forms.Form):

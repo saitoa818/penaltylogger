@@ -82,6 +82,7 @@ class Violation(models.Model):
 
 class Penalty(models.Model):
      content = models.CharField(max_length=10)
+     penalty_level = models.CharField(max_length=10)
      def __str__(self):
         return self.content
 
@@ -92,4 +93,5 @@ class Log(models.Model):
      player = models.ForeignKey(Player, on_delete=models.DO_NOTHING, blank=True, null=True)
      violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING, blank=True, null=True)
      penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING, blank=True, null=True)
+     penalty_level = models.CharField(max_length=5, blank=True, null=True)
      text = models.TextField(blank=True, null=True)
