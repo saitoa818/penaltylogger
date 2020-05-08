@@ -29,16 +29,7 @@ class LogForm(forms.ModelForm):
         }
     player_no = forms.IntegerField(label='プレイヤーNo.')
 
-    ペナルティ程度 = forms.fields.ChoiceField(
-        choices = (
-            ('低', '低'),
-            ('中', '中'),
-            ('高', '高'),
-            ('イカサマ', 'イカサマ'),
-        ),
-        required=True,
-        widget=forms.widgets.Select
-    )
+    level = level.choices
     AUTH_USER_MODEL = 'penaltylogger.player_no'
         
 

@@ -86,6 +86,7 @@ class Penalty(models.Model):
      def __str__(self):
         return self.content
 
+
 class Log(models.Model):
      event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, blank=True, null=True)
      round = models.IntegerField(blank=True, null=True)
@@ -93,5 +94,11 @@ class Log(models.Model):
      player = models.ForeignKey(Player, on_delete=models.DO_NOTHING, blank=True, null=True)
      violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING, blank=True, null=True)
      penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING, blank=True, null=True)
-     penalty_level = models.CharField(max_length=5, blank=True, null=True)
      text = models.TextField(blank=True, null=True)
+     
+     class Level(models.TextChoices):
+         低 = '低', '低'
+         中 = '中', '中'
+         高 = '高', '高'
+         イカサマ = 'イカサマ', 'イカサマ'
+     LEVEL_CHOICES = Level.choices
