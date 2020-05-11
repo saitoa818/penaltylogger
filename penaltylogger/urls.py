@@ -3,6 +3,7 @@ from . import views
 from .views import LogList
 
 
+
 urlpatterns = [
     path('', views.LogList.as_view(), name='log_list'),
     path('log/<int:pk>/', views.log_detail, name='log_detail'),
