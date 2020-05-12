@@ -3,91 +3,49 @@
     "model": "penaltylogger.penalty",
     "pk": 19,
     "fields": {
-      "action_time": "2020-05-11T11:12:09.704Z",
-      "user": 1,
-      "content_type": 6,
-      "object_id": "6",
-      "object_repr": "注意",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
+      "content": "注意"
     }
   },
   {
     "model": "penaltylogger.penalty",
     "pk": 20,
     "fields": {
-      "action_time": "2020-05-11T11:12:36.800Z",
-      "user": 1,
-      "content_type": 6,
-      "object_id": "7",
-      "object_repr": "警告",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
+      "content": "警告"
     }
   },
   {
     "model": "penaltylogger.penalty",
     "pk": 21,
     "fields": {
-      "action_time": "2020-05-11T11:12:47.321Z",
-      "user": 1,
-      "content_type": 6,
-      "object_id": "8",
-      "object_repr": "サイド1",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
+      "content": "サイド1"
     }
   },
   {
     "model": "penaltylogger.penalty",
     "pk": 22,
     "fields": {
-      "action_time": "2020-05-11T11:12:57.360Z",
-      "user": 1,
-      "content_type": 6,
-      "object_id": "9",
-      "object_repr": "サイド複数枚",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
+      "content": "サイド複数枚"
     }
   },
   {
     "model": "penaltylogger.penalty",
     "pk": 23,
     "fields": {
-      "action_time": "2020-05-11T11:13:10.015Z",
-      "user": 1,
-      "content_type": 6,
-      "object_id": "10",
-      "object_repr": "敗北",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
+      "content": "敗北"
     }
   },
   {
     "model": "penaltylogger.penalty",
     "pk": 24,
     "fields": {
-      "action_time": "2020-05-11T11:13:24.971Z",
-      "user": 1,
-      "content_type": 6,
-      "object_id": "11",
-      "object_repr": "当日失格",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
+      "content": "当日失格"
     }
   },
   {
     "model": "penaltylogger.penalty",
     "pk": 25,
     "fields": {
-      "action_time": "2020-05-11T11:13:34.142Z",
-      "user": 1,
-      "content_type": 6,
-      "object_id": "12",
-      "object_repr": "一定期間失格",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
+      "content": "一定期間失格"
     }
   }
 ]
