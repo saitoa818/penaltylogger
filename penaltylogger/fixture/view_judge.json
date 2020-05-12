@@ -1,0 +1,32 @@
+[
+  {
+    "model": "penaltylogger.judge",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$LY8YrC8AObJM$fKiwoBa8xXt298axVwPC1AwhdgdHqqb7F42Df5yJJao=",
+      "last_login": "2020-05-11T10:36:24.873Z",
+      "is_superuser": false,
+      "judge_id": 122320,
+      "is_active": true,
+      "is_admin": true,
+      "log_view": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "penaltylogger.judge",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$gppbJhU9Jjkx$Lbn7B6/CL7lwNNfJiG6vthZi3ESkFJQVwqaWnRMp/4Q=",
+      "last_login": "2020-05-11T08:56:07.873Z",
+      "is_superuser": false,
+      "judge_id": 12345,
+      "is_active": true,
+      "is_admin": true,
+      "log_view": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
