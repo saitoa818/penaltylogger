@@ -1,6 +1,6 @@
 [
 {
-    "model": "admin.logentry",
+    "model": "penaltylogger.penalty",
     "pk": 19,
     "fields": {
       "action_time": "2020-05-11T11:12:09.704Z",
@@ -13,7 +13,7 @@
     }
   },
   {
-    "model": "admin.logentry",
+    "model": "penaltylogger.penalty",
     "pk": 20,
     "fields": {
       "action_time": "2020-05-11T11:12:36.800Z",
@@ -26,7 +26,7 @@
     }
   },
   {
-    "model": "admin.logentry",
+    "model": "penaltylogger.penalty",
     "pk": 21,
     "fields": {
       "action_time": "2020-05-11T11:12:47.321Z",
@@ -39,7 +39,7 @@
     }
   },
   {
-    "model": "admin.logentry",
+    "model": "penaltylogger.penalty",
     "pk": 22,
     "fields": {
       "action_time": "2020-05-11T11:12:57.360Z",
@@ -52,7 +52,7 @@
     }
   },
   {
-    "model": "admin.logentry",
+    "model": "penaltylogger.penalty",
     "pk": 23,
     "fields": {
       "action_time": "2020-05-11T11:13:10.015Z",
@@ -65,7 +65,7 @@
     }
   },
   {
-    "model": "admin.logentry",
+    "model": "penaltylogger.penalty",
     "pk": 24,
     "fields": {
       "action_time": "2020-05-11T11:13:24.971Z",
@@ -78,7 +78,7 @@
     }
   },
   {
-    "model": "admin.logentry",
+    "model": "penaltylogger.penalty",
     "pk": 25,
     "fields": {
       "action_time": "2020-05-11T11:13:34.142Z",
