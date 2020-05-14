@@ -18,6 +18,7 @@
             <th>プレイヤー名</th>
             <th>違反の内容</th>
             <th>ペナルティ</th>
+            <th>違反の程度</th>
             <th>備考</th>
         </tr>
         {% for log_list in object_list %}
@@ -25,9 +26,10 @@
             <td>{{ log_list.event }}</td>
             <td>{{ log_list.round }}</td>
             <td>{{ log_list.judge }}</td>
-            <td>{{ log_list.player }}</td>
+            <td>{{ log_list.player_no }}</td>
             <td>{{ log_list.violation }}</td>
-            <td>{{ log_list.penalty}}</td>
+            <td>{{ log_list.penalty }}</td>
+            <td>{{ log_list.level }}</td>
             <td>{{ log_list.text }}</td>
         </tr>
         {% endfor %}
@@ -37,4 +39,3 @@
 </html>
  
 {% endblock %}
-

@@ -69,10 +69,11 @@ class Judge(AbstractBaseUser, PermissionsMixin):
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField(null=True, blank=True)
-
+    def __str__(self):
+        return self.name
 
 class Player(models.Model):
-     player_no = models.IntegerField()
+     player_no = models.IntegerField(null=True, blank=True)
      player_name = models.CharField(max_length=10)
 
 class Violation(models.Model):
@@ -91,6 +92,8 @@ class Level(models.TextChoices):
      高 = '高', '高'
      イカサマ = 'イカサマ', 'イカサマ'
 LEVEL_CHOICES = Level.choices
+def __str__(self):
+        return self.content
 
 class Log(models.Model):
      event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -99,5 +102,5 @@ class Log(models.Model):
      player = models.ForeignKey(Player, on_delete=models.DO_NOTHING, blank=True, null=True)
      violation = models.ForeignKey(Violation, on_delete=models.DO_NOTHING, blank=True, null=True)
      penalty = models.ForeignKey(Penalty, on_delete=models.DO_NOTHING, blank=True, null=True)
-     text = models.TextField(blank=True, null=True)
      level = models.TextField(choices=LEVEL_CHOICES)
+     text = models.TextField(blank=True, null=True)

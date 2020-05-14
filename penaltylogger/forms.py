@@ -1,7 +1,6 @@
 from django import forms
 
-from .models import Player
-from .models import Log
+from .models import Player, Log
 from django.contrib.auth.forms import (
     AuthenticationForm
 )
@@ -18,18 +17,19 @@ class LoginForm(AuthenticationForm):
 class LogForm(forms.ModelForm):
     class Meta:
         model = Log
-        fields = ('round', 'player_no', 'violation', 'penalty', 'text')
+        fields = ('round', 'player_no', 'violation', 'penalty', 'level', 'text')
 
         labels = {
             'round': 'ラウンド数',
             'player_no': 'プレイヤーNo.',
             'violation': '違反内容',
             'penalty': 'ペナルティの内容',
+            'level':'ペナルティ程度',
             'text': '備考欄',
         }
     player_no = forms.IntegerField(label='プレイヤーNo.')
 
-    level = level.choices
+    #level = level.choices
     AUTH_USER_MODEL = 'penaltylogger.player_no'
         
 

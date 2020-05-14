@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . import forms
 from .forms import LogForm
 from .forms import LoginForm
-from .models import Log, Event, Judge, Penalty
+from .models import Log, Event, Judge, Penalty, Player
 from django.views import generic
 from django.views.generic import ListView
 from django.contrib.auth.views import LoginView, LogoutView
@@ -49,11 +49,13 @@ def log_save(request):
     if request.method == "POST":
         form = LogForm(request.POST)
         log = form.save(commit=False)
-        judge = request.user
         event = Event.objects.filter(name='テストイベント1').first()
-        #name=の部分はイベントごとに修正が必要。
+        #上のname=の部分はイベントごとに修正が必要。
+        judge = request.user
+        player = Player.objects.filter(player_no=form.data['player_no']).first()
         log.event = event
         log.judge = judge
+        log.player = player
         log.save()
     else:
         form = LogForm()
