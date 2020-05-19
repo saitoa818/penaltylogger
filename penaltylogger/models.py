@@ -92,8 +92,6 @@ class Level(models.TextChoices):
      高 = '高', '高'
      イカサマ = 'イカサマ', 'イカサマ'
 LEVEL_CHOICES = Level.choices
-def __str__(self):
-        return self.content
 
 class Log(models.Model):
      event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, blank=True, null=True)

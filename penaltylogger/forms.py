@@ -28,8 +28,6 @@ class LogForm(forms.ModelForm):
             'text': '備考欄',
         }
     player_no = forms.IntegerField(label='プレイヤーNo.')
-
-    #level = level.choices
     AUTH_USER_MODEL = 'penaltylogger.player_no'
         
 

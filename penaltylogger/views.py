@@ -44,18 +44,17 @@ def log_new(request):
         form = LogForm()
     return render(request, 'penaltylogger/log_new.html', {'form': form})   
 
-@login_required
+#@login_required
 def log_save(request): 
     if request.method == "POST":
         form = LogForm(request.POST)
         log = form.save(commit=False)
-        event = Event.objects.filter(name='テストイベント1').first()
-        #上のname=の部分はイベントごとに修正が必要。
+        event = Event.objects.filter(name='テストイベント1').first() #上のname=の部分はイベントごとに修正が必要。
         judge = request.user
-        player = Player.objects.filter(player_no=form.data['player_no']).first()
+       # player = form.player_no
+       # log.player = player
         log.event = event
         log.judge = judge
-        log.player = player
         log.save()
     else:
         form = LogForm()
