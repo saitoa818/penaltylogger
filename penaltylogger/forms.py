@@ -15,9 +15,17 @@ class LoginForm(AuthenticationForm):
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
 
 class LogForm(forms.ModelForm):
+    player_no = Player.objects.filter(name=player_no) #ここで参照をxxx_idから変更する？
     class Meta:
         model = Log
-        fields = ('round', 'player_no', 'violation', 'penalty', 'level', 'text')
+        fields = (
+            'round',
+            'player_no',
+            'violation',
+            'penalty',
+            'level',
+            'text',
+            )
 
         labels = {
             'round': 'ラウンド数',
@@ -27,9 +35,11 @@ class LogForm(forms.ModelForm):
             'level':'ペナルティ程度',
             'text': '備考欄',
         }
-    player_no = forms.IntegerField(label='プレイヤーNo.')
+    player_no = forms.IntegerField(label='プレイヤーNo.', required=False)
+    
     AUTH_USER_MODEL = 'penaltylogger.player_no'
-        
+    def __str__(self):
+        return self.player_no
 
 #class PlayerForm(forms.Form):
 #player_no = forms.IntegerField()
