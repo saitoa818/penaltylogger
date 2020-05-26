@@ -15,7 +15,6 @@ class LoginForm(AuthenticationForm):
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
 
 class LogForm(forms.ModelForm):
-    player_no = Player.objects.filter(name=player_no) #ここで参照をxxx_idから変更する？
     class Meta:
         model = Log
         fields = (
@@ -36,6 +35,7 @@ class LogForm(forms.ModelForm):
             'text': '備考欄',
         }
     player_no = forms.IntegerField(label='プレイヤーNo.', required=False)
+    #player_id = Player.objects.filter(player_id=player_no) #ここで参照をxxx_idから変更する？
     
     AUTH_USER_MODEL = 'penaltylogger.player_no'
     def __str__(self):
