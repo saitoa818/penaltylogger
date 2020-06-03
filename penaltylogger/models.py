@@ -69,6 +69,10 @@ class Judge(AbstractBaseUser, PermissionsMixin):
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField(null=True, blank=True)
+    eventBoolean = models.BooleanField(
+        verbose_name='現在進行中のイベント',
+        default=False,
+    )
     def __str__(self):
         return self.name
 
