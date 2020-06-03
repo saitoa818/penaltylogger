@@ -69,7 +69,7 @@ class Judge(AbstractBaseUser, PermissionsMixin):
 class Event(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     max_round = models.IntegerField(null=True, blank=True)
-    eventBoolean = models.BooleanField(
+    current_event = models.BooleanField(
         verbose_name='現在進行中のイベント',
         default=False,
     )
@@ -78,7 +78,7 @@ class Event(models.Model):
 
 class Player(models.Model):
      player_no = models.IntegerField(null=True, blank=True)
-     player_name = models.CharField(max_length=10)
+    # player_name = models.CharField(max_length=10)
 
 class Violation(models.Model):
      content = models.CharField(max_length=30)

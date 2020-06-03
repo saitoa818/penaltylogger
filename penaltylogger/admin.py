@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Event, Log, Penalty, Violation, Judge
+from .models import Event, Log, Penalty, Violation, Judge, Player
 from django.contrib.auth.models import Group, User
 
 from django.contrib.auth.forms import UserChangeForm
@@ -70,6 +70,7 @@ class JudgeAdmin(UserAdmin):
 admin.site.register(Judge, UserAdmin)
 admin.site.unregister(Group)
 admin.site.register(Event)
+admin.site.register(Player)
 admin.site.register(Log)
 admin.site.register(Penalty)
 admin.site.register(Violation)

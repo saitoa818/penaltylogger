@@ -51,13 +51,9 @@ def log_save(request):
         log = form.save(commit=False)
         # for key, value in form.__dict__.items():
         #     print(key, ':', value)
-        event = Event.objects.filter(name='テストイベント1').first() #上のname=の部分はイベントごとに修正が必要。
+        event = Event.objects.filter(name=true)
         judge = request.user
-        player = Player.player_no
-        #player_no = Player.objects.get(player_no=form.player_no) #formから取ってこない?
-        #player_no = Player.objects.get(player_no=1)#サイトで1を打ち込んでも一致するクエリが存在しない。
-        #player_no = player_no.save(request.player_no)
-        #player_no = Player.objects.filter(log=log.player_id)#動くが取得はできていない
+        player = Player.objects.get(player=form.player) #formから取ってこない?
         log.player = player #エラーメッセージ "Log.player" must be a "Player" instance.　Log.player = player = player_noと考えているがどう間違っているかがわからない
         log.event = event
         log.judge = judge
