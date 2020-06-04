@@ -53,7 +53,7 @@ def log_save(request):
         #     print(key, ':', value)
         event = Event.objects.filter(current_event=True)
         judge = request.user
-        player = Player.objects.get(player_no=player_no) #formから取ってこない?
+        player = Player.objects.get(player_no=form.player_no) #formから取ってこない?
         log.player = player #エラーメッセージ "Log.player" must be a "Player" instance.　Log.player = player = player_noと考えているがどう間違っているかがわからない
         log.event = event
         log.judge = judge
