@@ -9,6 +9,7 @@ from django.views.generic import ListView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.http import QueryDict
 
 class login(LoginView):
     """ログインページ"""
@@ -49,13 +50,14 @@ def log_save(request):
     if request.method == "POST":
         form = LogForm(request.POST)
         log = form.save(commit=False)
-        # for key, value in form.__dict__.items():
-        #     print(key, ':', value)
-        event = Event.objects.filter(current_event=True)
+        #event = Event.objects.filter(current_event=True)
         judge = request.user
-        player = Player.objects.get(player_no=form.player_no) #formから取ってこない?
-        log.player = player #エラーメッセージ "Log.player" must be a "Player" instance.　Log.player = player = player_noと考えているがどう間違っているかがわからない
-        log.event = event
+        #print(form.data.get('player_no'))
+        player = Player.objects.get(player_no = form.data.get('player_no'))
+        # for key, value in form.data.player_no.__dict__.items():
+        #     print(key, ':', value)
+        log.player = player
+        #log.event = event
         log.judge = judge
         log.save()
     else:
