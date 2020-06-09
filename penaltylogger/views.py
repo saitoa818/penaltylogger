@@ -50,15 +50,12 @@ def log_save(request):
     if request.method == "POST":
         form = LogForm(request.POST)
         log = form.save(commit=False)
-        #event = Event.objects.filter(current_event=True)
+        event = Event.objects.get(current_event=True)
         judge = request.user
-        #print(form.data.get('player_no'))
-        player = Player.objects.get(player_no = form.data.get('player_no'))
-        # for key, value in form.data.player_no.__dict__.items():
-        #     print(key, ':', value)
-        log.player = player
-        #log.event = event
+        player = Player.objects.get(player_no=form.data.get('player_no'))
+        log.event = event
         log.judge = judge
+        log.player = player
         log.save()
     else:
         form = LogForm()
