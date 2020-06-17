@@ -10,6 +10,12 @@
 </head>
  
 <body>
+
+    <form action="" method="get">
+        <input name="query" value="{{ request.GET.query }}" type="text">
+        <button type="submit">検索する</button>
+    </form>
+         
     <table border="1">
         <tr>
             <th>大会名</th>

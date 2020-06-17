@@ -10,6 +10,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.http import QueryDict
+from django.db.models import Q
 
 class login(LoginView):
     """ログインページ"""
@@ -26,6 +27,14 @@ class LogList(LoginRequiredMixin,ListView):
             return Log.objects.all()
         else:
             return Log.objects.filter(judge_id=None)
+
+        q_word = self.request.GET.get('query')
+        if q_word:
+            object_list = Log.objects.filter.all(
+                Q(event__icontains=q_word) | Q(player__icontains=q_word))
+        else:
+            object_list = Log.objects.all()
+        return object_list
 
 @login_required
 def log_detail(request, pk):
@@ -51,8 +60,6 @@ def log_save(request):
         form = LogForm(request.POST)
         log = form.save(commit=False)
         event = Event.objects.filter(current_event=True).first()
-            # for key, value in item.__dict__.items():
-            #     print(key, ':', value)
         judge = request.user
         player = Player.objects.get(player_no=form.data.get('player_no'))
 
