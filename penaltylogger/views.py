@@ -29,9 +29,15 @@ class LogList(LoginRequiredMixin,ListView):
             return Log.objects.filter(judge_id=None)
 
         q_word = self.request.GET.get('query')
+
+                                
+        for key, value in q_word.__dict__.items():
+            print(key, ':', value)
+
         if q_word:
             object_list = Log.objects.filter.all(
-                Q(event__icontains=q_word) | Q(player__icontains=q_word))
+                Q(event__contains=q_word) | Q(player__contains=q_word))
+
         else:
             object_list = Log.objects.all()
         return object_list
